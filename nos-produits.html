@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - La Petite Graine</title>
+  <title>Nos produits - La Petite Graine</title>
   <meta name="description" content="La Petite Graine est une cantine végétalienne proposant une cuisine saine, éthique et accessible." />
   <meta name="keywords" content="cantine végétalienne, cuisine saine, éthique, La Petite Graine, Limoges" />
   <meta name="author" content="La Petite Graine" />
@@ -28,6 +28,7 @@
     "url": "https://www.lapetitegraine.fr"
   }
   </script>
+  <link rel="icon" href="assets/images/logo-la-petite-graine.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     html {
@@ -271,7 +272,8 @@
 <body>
   <header>
     <a href="index.html" class="logo">La Petite Graine</a>
-    <nav>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav class="main-nav">
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="carte.html">La carte</a></li>
@@ -293,7 +295,49 @@
 
       <style>
         /* Inline style for card and grid already moved to head for maintainability */
-      </style>
+  .menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .main-nav {
+      display: none;
+      flex-basis: 100%;
+      width: 100%;
+    }
+
+    .main-nav.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .main-nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .main-nav ul li {
+      width: 100%;
+    }
+
+    .main-nav ul li a {
+      display: block;
+      padding: 0.5rem;
+    }
+  }
+  </style>
 
       <div class="product-gallery">
         <div class="product-item">
@@ -540,4 +584,16 @@
     }, 6000);
   </script>
 </body>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    menuToggle.addEventListener('click', function () {
+      mainNav.classList.toggle('active');
+      if (mainNav.classList.contains('active')) {
+        menuToggle.textContent = '✖';
+      } else {
+        menuToggle.textContent = '☰';
+      }
+    });
+  </script>
 </html>
